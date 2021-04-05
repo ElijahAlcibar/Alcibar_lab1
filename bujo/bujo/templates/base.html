@@ -1,17 +1,17 @@
 <html>
 	<head>
-		<link rel="stylesheet" href="style.css">
 		<title>{% block title %}My Amazing Site{% endblock %}</title>
+		{% block styles %}{% endblock %}
 	</head>
 	
 	<body>	
-		<nav>
+		<nav class="nav">
 			<ul>
-				<li><a href="today.html">today</a></li>
-				<li><a href="thisweek.html">This Week</a></li>
-				<li><a href="key.html">Key</a></li>
-				<li><a href="profile.html">Profile</a></li>
-				<li><a href="index.html">Home</a></li>
+				<li><a href="today">today</a></li>
+				<li><a href="this_week">This Week</a></li>
+				<li><a href="key">Key</a></li>
+				<li><a href="profile">Profile</a></li>
+				<li><a href="home">Home</a></li>
 			</ul>
 		</nav>
 		<center>

@@ -1,18 +1,18 @@
 {% extends 'base.html '%}
 {% load static %}
 
-{% block title%}Home{% endblock %}
+{% block title%}today{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="{% static 'css/styles.css'%}">
 {% endblock %}
 
 {% block head %}
-<h1>Your Bullet Journal</h1>
+<h1>Today</h1>
 {% endblock%}
 
 {% block content %}
-	<form action="/profile" method="post">
+	<form action="/today" method="post">
 		{% csrf_token %}
 		{{ form }}
 		<input type="submit" value="Submit">
