@@ -4,17 +4,18 @@
 {% block title%}today{% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
 {% endblock %}
 
 {% block head %}
-<h1>Today</h1>
+	<h1>Today</h1>
 {% endblock%}
 
 {% block content %}
-	<form action="/today" method="post">
-		{% csrf_token %}
-		{{ form }}
-		<input type="submit" value="Submit">
-	</form>
+	<li>04.05.MON - Align Telescope</li>
+	<li type="circle">04.05.MON - Cyan found dead</li>
+	<p>- 04.05.MON - There is an imposter among us</p>
+	<li>04.05.MON - Stabilize Steering</li>
+	<li>04.05.MON - Sort Samples</li>
+	<li>04.05.MON - Fix Weather Node</li>
 {% endblock %}

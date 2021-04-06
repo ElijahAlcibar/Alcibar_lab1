@@ -4,17 +4,17 @@
 {% block title%}Key{% endblock %}
 
 {% block styles %}
-<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
 {% endblock %}
 
 {% block head %}
-<h1>Key</h1>
+	<h1>Key</h1>
 {% endblock%}
 
 {% block content %}
-	<form action="/key" method="post">
-		{% csrf_token %}
-		{{ form }}
-		<input type="submit" value="Submit">
-	</form>
+	<li><b>Taks</b>: things you have to do</li>
+	<p>- <b>Notes</b>: Things you don't want to forget</p>
+	<li><b>Events</b>: Noteworthy moments in time</li>
+	<li>Task incomplete</li>
+	<p>x Task complete</p>
 {% endblock %}
