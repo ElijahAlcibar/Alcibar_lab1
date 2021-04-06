@@ -1,10 +1,16 @@
 {% extends 'base.html '%}
 {% load static %}
 
-{% block title%}today{% endblock %}
+{% block title%}Today{% endblock %}
 
 {% block styles %}
 	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+	<style>
+		li{
+			padding:0px;
+			margin
+		}
+	</style>
 {% endblock %}
 
 {% block head %}
@@ -12,10 +18,10 @@
 {% endblock%}
 
 {% block content %}
-	<li>04.05.MON - Align Telescope</li>
-	<li type="circle">04.05.MON - Cyan found dead</li>
-	<p>- 04.05.MON - There is an imposter among us</p>
-	<li>04.05.MON - Stabilize Steering</li>
-	<li>04.05.MON - Sort Samples</li>
-	<li>04.05.MON - Fix Weather Node</li>
+		<li>04.05.MON - Align Telescope</li>
+		<li type="circle">04.05.MON - Cyan found dead</li>
+		- 04.05.MON - There is an imposter among us!
+		<li>04.05.MON - Stabilize Steering</li>
+		<li>04.05.MON - Sort Samples</li>
+		<li>04.05.MON - Fix Weather Node</li>
 {% endblock %}

@@ -5,6 +5,11 @@
 
 {% block styles %}
 	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+	<style>
+		li{
+			padding:0px;
+		}
+	</style>
 {% endblock %}
 
 {% block head %}
@@ -13,8 +18,8 @@
 
 {% block content %}
 	<li><b>Taks</b>: things you have to do</li>
-	<p>- <b>Notes</b>: Things you don't want to forget</p>
-	<li><b>Events</b>: Noteworthy moments in time</li>
+	- <b>Notes</b>: Things you don't want to forget
+	<li><b>Events</b>: Noteworthy moments in time</li><br/>
 	<li>Task incomplete</li>
-	<p>x Task complete</p>
+	x Task complete
 {% endblock %}
