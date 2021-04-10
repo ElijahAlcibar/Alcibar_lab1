@@ -1,0 +1,23 @@
+
+{% extends 'base.html '%}
+{% load static %}
+
+{% block title%}Profile{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+{% endblock %}
+
+{% block head %}
+	<h1>Profile</h1>
+{% endblock%}
+
+{% block content %}
+	<form action="/nickname_profile" method="post">
+        {% csrf_token %}
+        {{ form }}
+        {% if request.method == "GET" %}
+            <input type="submit" value="Submit">
+        {% endif %}
+    </form>
+{% endblock %}
