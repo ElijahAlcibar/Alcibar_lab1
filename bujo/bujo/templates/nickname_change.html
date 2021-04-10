@@ -13,11 +13,9 @@
 {% endblock%}
 
 {% block content %}
-	<form action="/nickname_profile" method="post">
+	<form action="nickname_change" method="post">
         {% csrf_token %}
         {{ form }}
-        {% if request.method == "GET" %}
-            <input type="submit" value="Submit">
-        {% endif %}
+        <input type="submit" value="Submit">
     </form>
 {% endblock %}

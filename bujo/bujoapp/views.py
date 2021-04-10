@@ -1,12 +1,13 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
-from .forms import NameOfUser
+from .forms import NameOfUser, ChangeNicknameForm
+from .models import Profile
 	
 class ProfilePageView(View):
 	def get(self,request):
-		return render(request, 'profile.html')
+		return render(request, 'profile.html', {'profile': Profile.objects.first()})
 	
 class KeyPageView(View):
 	def get(self,request):
@@ -29,3 +30,34 @@ def HomePageView(request):
 	else:
 		form = NameOfUser()
 	return render(request, 'index.html', {'form': form, 'text': 'Hello! What is your name?'})
+
+
+def ChangeNicknameView(request):
+    profile = Profile.objects.first()
+    if profile is None:
+        profile = Profile.objects.create()
+    if request.method =="POST":
+        form = ChangeNicknameForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('/profile')
+    else:
+        form = ChangeNicknameForm()
+    template = 'nickname_change.html'
+    context = {'form': form}
+    return render(request, template, context)
+
+def ChangeNicknameView(request):
+    profile = Profile.objects.first()
+    if profile is None:
+        profile = Profile.objects.create()
+    if request.method =="POST":
+        form = ChangeNicknameForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('/profile')
+    else:
+        form = ChangeNicknameForm()
+    template = 'bio_change.html'
+    context = {'form': form}
+    return render(request, template, context)
