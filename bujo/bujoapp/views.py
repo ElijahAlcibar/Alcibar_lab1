@@ -1,8 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
-from .forms import NameOfUser
+from .forms import NameOfUser, NicknameProfileForm
+from .models import ProfilePageModel
 	
 class ProfilePageView(View):
 	def get(self,request):
@@ -29,3 +30,19 @@ def HomePageView(request):
 	else:
 		form = NameOfUser()
 	return render(request, 'index.html', {'form': form, 'text': 'Hello! What is your name?'})
+
+
+def nickname_change(request):
+	profile = ProfilePageModel.objects.first()
+	if profile is None:
+		profile = ProfilePageModel.objects.create()
+	if request.method == "POST":
+		form = NicknameProfileForm(request.POST, instance=profile)
+		if form.is_valid():
+			form.save()
+			return redirect('profile')
+	else:
+		form = NicknameProfileForm()
+	template = 'nickname_change.html'
+	context = {'form': form}
+	return render(request, template, context)

@@ -1,4 +1,3 @@
-
 {% extends 'base.html '%}
 {% load static %}
 
@@ -13,11 +12,13 @@
 {% endblock%}
 
 {% block content %}
-	<form action="/nickname_profile" method="post">
-        {% csrf_token %}
-        {{ form }}
-        {% if request.method == "GET" %}
-            <input type="submit" value="Submit">
-        {% endif %}
-    </form>
+	<center>
+		<img src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Pierre-Person.jpg" width="300">
+		<h3>Nickname: {{ profile.nickname }}<a href="nickname_change" method="POST">edit</a></h3>
+		<p>biology is bio</p>
+	</center>
+	
+	<ul>
+		<li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque porttitor nisl nec neque rutrum rutrum. Aliquam ut nisi ante. Duis molestie viverra ligula, vel facilisis odio efficitur a. Duis et enim a nunc lobortis ullamcorper eget ac odio. Duis vel sagittis nisl. Duis et purus ut elit venenatis consequat a ultricies nisi. Mauris posuere sed enim vulputate venenatis. Nullam volutpat ac neque quis maximus. In hac habitasse platea dictumst. Etiam ut libero feugiat, pharetra dui vel, cursus orci. Donec et quam gravida, commodo sapien vel, tristique lectus. In et ultricies velit. Curabitur rhoncus sed tortor vel porttitor. Praesent sed laoreet ipsum, sed mattis turpis. Aliquam et consectetur mauris.</li>
+	</ul>
 {% endblock %}
