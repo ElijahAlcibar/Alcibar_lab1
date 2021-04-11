@@ -23,11 +23,15 @@
 		<tr>
 			<th>Type</th>
 			<th>Description</th>
+			<th>Edit Task</th>
+			<th>Delete Task</th>
 		</tr>
 		{%for task in object_list%}
 			<tr>
 				<td>{{task.task_type}}</td>
 				<td>{{task.task_description}}</td>
+				<td><button type="button"><a href="{%url 'edit_task_this_week' task.id%}" class="butt">Edit Task</a></button></td>
+				<td><button type="button"><a href="{%url 'delete_task_this_week' task.id%}" class="butt">Delete Task</a></button></td>
 			</tr>
 		{%endfor%}
 	</table>

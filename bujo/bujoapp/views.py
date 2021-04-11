@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.views.generic.list import ListView
 
@@ -8,7 +8,8 @@ from .forms import(
     ChangeNicknameForm, 
     ChangeBioForm, 
     AddKeyForm,
-    AddThisWeekForm
+    AddThisWeekForm,
+    EditThisWeekForm
 )
 from .models import Profile, Key, ThisWeek
 	
@@ -112,3 +113,23 @@ def AddThisWeekView(request):
     template = 'add_task_this_week.html'
     context = {'form': form}
     return render(request, template, context)
+
+
+def EditThisWeekView(request, pk):
+    task = get_object_or_404(ThisWeek, pk=pk)
+    if request.method == "POST":
+        form = EditThisWeekForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('this_week')
+    else:
+        form = EditThisWeekForm()
+    template = 'edit_task_this_week.html'
+    context = {'form': form}
+    return render(request, template, context)
+
+
+def DeleteThisWeekView(request, pk):
+    task = ThisWeek.objects.get(id=pk)
+    task.delete()
+    return redirect('this_week')

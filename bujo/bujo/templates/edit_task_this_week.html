@@ -9,11 +9,11 @@
 {% endblock %}
 
 {% block head %}
-	<h1>Add Task This Week</h1>
+	<h1>Add key</h1>
 {% endblock%}
 
 {% block content %}
-	<form action="add_task_this_week" method="post">
+	<form action="{%url 'edit_task_this_week' task.pk %}" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit">

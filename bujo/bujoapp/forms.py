@@ -28,7 +28,14 @@ class AddKeyForm(forms.ModelForm):
 		model=Key
 		fields = ['key', 'description']
 
+
 class AddThisWeekForm(forms.ModelForm):
+	class Meta:
+		model = ThisWeek
+		fields = ['task_type', 'task_description']
+
+
+class EditThisWeekForm(forms.ModelForm):
 	class Meta:
 		model = ThisWeek
 		fields = ['task_type', 'task_description']
