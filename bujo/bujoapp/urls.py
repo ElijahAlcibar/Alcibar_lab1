@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (
 	HomePageView, ProfilePageView, KeyPageView, ThisWeekPageView, TodayPageView,
-	ChangeNicknameView, ChangeBioView
+	ChangeNicknameView, ChangeBioView, AddKeyView
 )
 
 urlpatterns = [
@@ -14,4 +14,6 @@ urlpatterns = [
 
 	path('nickname_change', ChangeNicknameView, name="nickname_change"),
 	path('bio_change', ChangeBioView, name="bio_change"),
+	
+	path('add_key', AddKeyView, name="add_key")
 ]

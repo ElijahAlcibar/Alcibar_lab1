@@ -2,18 +2,18 @@
 {% extends 'base.html '%}
 {% load static %}
 
-{% block title%}Profile{% endblock %}
+{% block title%}Key{% endblock %}
 
 {% block styles %}
 	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
 {% endblock %}
 
 {% block head %}
-	<h1>Change nickname</h1>
+	<h1>Add key</h1>
 {% endblock%}
 
 {% block content %}
-	<form action="nickname_change" method="post">
+	<form action="add_key" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit">

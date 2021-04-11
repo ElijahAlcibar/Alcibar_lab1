@@ -12,5 +12,11 @@ class Profile(models.Model):
         default="A short description about yourself"
     )
 
+
+class Key(models.Model):
+    key = models.CharField(max_length=100)
+    description = models.CharField(max_length=100)
+
+
 class NewProfile(models.Model):
     name = models.CharField(max_length=100)

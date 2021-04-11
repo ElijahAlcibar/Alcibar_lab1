@@ -1,10 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
+from django.views.generic.list import ListView
 
-from .forms import NameOfUser, ChangeNicknameForm, ChangeBioForm
-from .models import Profile
+from .forms import NameOfUser, ChangeNicknameForm, ChangeBioForm, AddKeyForm
+from .models import Profile, Key
 	
+
 class ProfilePageView(View):
 	def get(self,request):
 		return render(
@@ -12,18 +14,22 @@ class ProfilePageView(View):
             'profile.html', 
             {'profile': Profile.objects.first()}
         )
+
+
+class KeyPageView(ListView):
+    model = Key
+    template_name = "key.html"
 	
-class KeyPageView(View):
-	def get(self,request):
-		return render(request, 'key.html')
-	
+
 class ThisWeekPageView(View):
 	def get(self,request):
 		return render(request, 'thisweek.html')
 	
+
 class TodayPageView(View):
 	def get(self,request):
 		return render(request, 'today.html')
+
 
 def HomePageView(request):
 	if request.method == 'POST':
@@ -59,6 +65,7 @@ def ChangeNicknameView(request):
     context = {'form': form}
     return render(request, template, context)
 
+
 def ChangeBioView(request):
     profile = Profile.objects.first()
     if profile is None:
@@ -71,5 +78,18 @@ def ChangeBioView(request):
     else:
         form = ChangeBioForm()
     template = 'bio_change.html'
+    context = {'form': form}
+    return render(request, template, context)
+
+
+def AddKeyView(request):
+    if request.method == "POST":
+        form = AddKeyForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('key')
+    else:
+        form = AddKeyForm()
+    template = 'add_key.html'
     context = {'form': form}
     return render(request, template, context)
