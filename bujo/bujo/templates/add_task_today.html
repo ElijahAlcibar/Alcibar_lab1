@@ -2,18 +2,18 @@
 {% extends 'base.html '%}
 {% load static %}
 
-{% block title%}This Week{% endblock %}
+{% block title%}Today{% endblock %}
 
 {% block styles %}
 	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
 {% endblock %}
 
 {% block head %}
-	<h1>Add Task This Week</h1>
+	<h1>Add Task Today</h1>
 {% endblock%}
 
 {% block content %}
-	<form action="add_task_this_week" method="post">
+	<form action="add_task_today" method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit">

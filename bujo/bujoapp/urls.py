@@ -3,7 +3,8 @@ from django.urls import path
 from .views import (
 	HomePageView, ProfilePageView, KeyPageView, ThisWeekPageView, TodayPageView,
 	ChangeNicknameView, ChangeBioView, AddKeyView, AddThisWeekView, 
-	EditThisWeekView, DeleteThisWeekView, DoneThisWeekView
+	EditThisWeekView, DeleteThisWeekView, DoneThisWeekView, AddTodayView, 
+	EditTodayView, DeleteTodayView, DoneTodayView
 )
 
 urlpatterns = [
@@ -22,4 +23,9 @@ urlpatterns = [
 	path('edit_task_this_week/<str:pk>/', EditThisWeekView, name="edit_task_this_week"),
 	path('delete_task_this_week/<str:pk>/', DeleteThisWeekView, name="delete_task_this_week"),
 	path('done_task_this_week/<str:pk>/', DoneThisWeekView, name="done_task_this_week"),
+
+	path('add_task_today', AddTodayView, name="add_task_today"),
+	path('edit_task_today/<str:pk>/', EditTodayView, name="edit_task_today"),
+	path('delete_task_today/<str:pk>/', DeleteTodayView, name="delete_task_today"),
+	path('done_task_today/<str:pk>/', DoneTodayView, name="done_task_today"),
 ]

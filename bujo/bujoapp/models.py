@@ -34,3 +34,11 @@ class ThisWeek(models.Model):
 
     def __str__(self):
         return "{} - {}".format(self.task_type,self.task_description)
+
+
+class Today(models.Model):
+    task_type = models.CharField(max_length=100, choices=TASK_CHOICES)
+    task_description = models.CharField(max_length=100)
+
+    def __str__(self):
+        return "{} - {}".format(self.task_type,self.task_description)

@@ -18,10 +18,26 @@
 {% endblock%}
 
 {% block content %}
-		<li>04.05.MON - Align Telescope</li>
-		<li type="circle">04.05.MON - Cyan found dead</li>
-		- 04.05.MON - There is an imposter among us!
-		<li>04.05.MON - Stabilize Steering</li>
-		<li>04.05.MON - Sort Samples</li>
-		<li>04.05.MON - Fix Weather Node</li>
+	<h2>03.02.TUE</h2>
+	<table>
+		<tr>
+			<th>Type</th>
+			<th>Description</th>
+			<th>Edit Task</th>
+			<th>Delete Task</th>
+			<th>Done Task</th>
+		</tr>
+		{%for task in object_list%}
+			<tr>
+				<td>{{task.task_type}}</td>
+				<td>{{task.task_description}}</td>
+				<td><button type="button"><a href="{%url 'edit_task_today' task.id%}" class="butt">Edit Task</a></button></td>
+				<td><button type="button"><a href="{%url 'delete_task_today' task.id%}" class="butt">Delete Task</a></button></td>
+				{%if task.task_type == "TASK" %}
+				<td><button type="button"><a href="{%url 'done_task_today' task.id%}" class="butt">Mark As Done</a></button></td>
+				{%endif%}
+			</tr>
+		{%endfor%}
+	</table>
+	<button type="button"><a href="add_task_today" class="butt">Add Task</a></button>
 {% endblock %}

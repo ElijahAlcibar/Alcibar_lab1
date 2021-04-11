@@ -9,9 +9,11 @@ from .forms import(
     ChangeBioForm, 
     AddKeyForm,
     AddThisWeekForm,
-    EditThisWeekForm
+    EditThisWeekForm,
+    AddTodayForm,
+    EditTodayForm
 )
-from .models import Profile, Key, ThisWeek
+from .models import Profile, Key, ThisWeek, Today
 	
 
 class ProfilePageView(View):
@@ -33,9 +35,9 @@ class ThisWeekPageView(ListView):
     template_name = "thisweek.html"
 	
 
-class TodayPageView(View):
-	def get(self,request):
-		return render(request, 'today.html')
+class TodayPageView(ListView):
+    model = Today
+    template_name = "today.html"
 
 
 def HomePageView(request):
@@ -123,9 +125,9 @@ def EditThisWeekView(request, pk):
             form.save()
             return redirect('this_week')
     else:
-        form = EditThisWeekForm()
+        form = EditThisWeekForm(instance=task)
     template = 'edit_task_this_week.html'
-    context = {'form': form}
+    context = {'task': task, 'form': form}
     return render(request, template, context)
 
 
@@ -138,3 +140,41 @@ def DeleteThisWeekView(request, pk):
 def DoneThisWeekView(request, pk):
     ThisWeek.objects.filter(id=pk).update(task_type='TASK DONE')
     return redirect('this_week')
+
+
+def AddTodayView(request):
+    if request.method == "POST":
+        form = AddTodayForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('today')
+    else:
+        form=AddTodayForm()
+    template = 'add_task_today.html'
+    context = {'form': form}
+    return render(request, template, context)
+
+
+def EditTodayView(request, pk):
+    task = get_object_or_404(Today, pk=pk)
+    if request.method == "POST":
+        form = EditTodayForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('today')
+    else:
+        form = EditTodayForm(instance=task)
+    template = 'edit_task_today.html'
+    context = {'task': task, 'form': form}
+    return render(request, template, context)
+
+
+def DeleteTodayView(request, pk):
+    task = Today.objects.get(id=pk)
+    task.delete()
+    return redirect('today')
+
+
+def DoneTodayView(request, pk):
+    Today.objects.filter(id=pk).update(task_type='TASK DONE')
+    return redirect('today')
