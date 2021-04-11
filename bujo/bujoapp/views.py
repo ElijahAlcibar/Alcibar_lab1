@@ -133,3 +133,8 @@ def DeleteThisWeekView(request, pk):
     task = ThisWeek.objects.get(id=pk)
     task.delete()
     return redirect('this_week')
+
+
+def DoneThisWeekView(request, pk):
+    ThisWeek.objects.filter(id=pk).update(task_type='TASK DONE')
+    return redirect('this_week')
