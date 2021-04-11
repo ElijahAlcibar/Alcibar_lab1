@@ -3,8 +3,14 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic.list import ListView
 
-from .forms import NameOfUser, ChangeNicknameForm, ChangeBioForm, AddKeyForm
-from .models import Profile, Key
+from .forms import(
+    NameOfUser, 
+    ChangeNicknameForm, 
+    ChangeBioForm, 
+    AddKeyForm,
+    AddThisWeekForm
+)
+from .models import Profile, Key, ThisWeek
 	
 
 class ProfilePageView(View):
@@ -21,9 +27,9 @@ class KeyPageView(ListView):
     template_name = "key.html"
 	
 
-class ThisWeekPageView(View):
-	def get(self,request):
-		return render(request, 'thisweek.html')
+class ThisWeekPageView(ListView):
+    model = ThisWeek
+    template_name = "thisweek.html"
 	
 
 class TodayPageView(View):
@@ -91,5 +97,18 @@ def AddKeyView(request):
     else:
         form = AddKeyForm()
     template = 'add_key.html'
+    context = {'form': form}
+    return render(request, template, context)
+
+
+def AddThisWeekView(request):
+    if request.method == "POST":
+        form = AddThisWeekForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('this_week')
+    else:
+        form=AddThisWeekForm()
+    template = 'add_task_this_week.html'
     context = {'form': form}
     return render(request, template, context)

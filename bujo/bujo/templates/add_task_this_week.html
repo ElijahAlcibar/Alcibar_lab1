@@ -1,0 +1,21 @@
+
+{% extends 'base.html '%}
+{% load static %}
+
+{% block title%}Key{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+{% endblock %}
+
+{% block head %}
+	<h1>Add key</h1>
+{% endblock%}
+
+{% block content %}
+	<form action="add_task_this_week" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
