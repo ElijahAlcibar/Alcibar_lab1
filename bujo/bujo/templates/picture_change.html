@@ -1,0 +1,21 @@
+
+{% extends 'base.html '%}
+{% load static %}
+
+{% block title%}Profile{% endblock %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+{% endblock %}
+
+{% block head %}
+	<h1>Profile</h1>
+{% endblock%}
+
+{% block content %}
+	<form action="picture_change" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
